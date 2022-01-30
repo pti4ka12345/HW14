@@ -37,11 +37,8 @@ def get_rating(rating):
 
 
 def search_pair(actor1, actor2):
-    query = f"""
-    select [cast]
-    from netflix
-    where [cast] like '%{actor1}%' and '%{actor2}%'
-    """
+    query = f"select \"cast\" from netflix " \
+            f"where \"cast\" like '%{actor1}%' and \"cast\" like '%{actor2}%' "
     result = get_movie_by_id('netflix.db', query)
     result_list = []
     for line in result:
@@ -49,13 +46,13 @@ def search_pair(actor1, actor2):
         result_list += line_list
         counter = Counter(result_list)
         print(counter)
-        actor_list = []
+        actors_list = []
         for key, value in counter.items():
             if value > 2 and key.strip() not in [actor1, actor2]:
-                actor_list.append(key)
-        return actor_list
+                actors_list.append(key)
+        return actors_list
 
-print(search_pair('Jack Black', 'Dustin Hoffman'))
+print(search_pair('Rose McIver','Ben Lamb'))
 
 
 
