@@ -44,13 +44,12 @@ def search_pair(actor1, actor2):
     for line in result:
         line_list = line[0].split(',')
         result_list += line_list
-        counter = Counter(result_list)
-        print(counter)
-        actors_list = []
-        for key, value in counter.items():
-            if value > 2 and key.strip() not in [actor1, actor2]:
-                actors_list.append(key)
-        return actors_list
+    counter = Counter(result_list)
+    actors_list = []
+    for key, value in counter.items():
+        if value > 2 and key.strip() not in [actor1, actor2]:
+            actors_list.append(key)
+    return actors_list
 
 print(search_pair('Rose McIver','Ben Lamb'))
 
